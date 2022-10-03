@@ -1,4 +1,4 @@
-import BookShelfChanger from "./BookShelfChanger";
+import BookShelfChanger from "../components/BookShelfChanger";
 const Book = ({ url, title, authors }) => {
 	return (
 		<div className="book">
