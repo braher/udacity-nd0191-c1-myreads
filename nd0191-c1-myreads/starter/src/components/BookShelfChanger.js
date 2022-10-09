@@ -1,12 +1,7 @@
-import { useEffect } from "react";
+import PropTypes from "prop-types";
 
 const BookShelfChanger = ({ shelf, onHandleChange }) => {
 	const shelves = ["Currently Reading", "Want to Read", "Read"];
-	useEffect(() => {
-		// switch(shelf){
-		// 	case shelf=="currentlyReading"
-		// }
-	});
 	const handleChange = (event) => {
 		onHandleChange(event.target.value);
 	};
@@ -23,5 +18,10 @@ const BookShelfChanger = ({ shelf, onHandleChange }) => {
 			</select>
 		</div>
 	);
+};
+
+BookShelfChanger.propTypes = {
+	shelf: PropTypes.string.isRequired,
+	onHandleChange: PropTypes.func.isRequired,
 };
 export default BookShelfChanger;

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import BookShelfChanger from "../components/BookShelfChanger";
-import * as BooksAPI from "../utils/BooksAPI";
+import PropTypes from "prop-types";
 
-const Book = ({ book, url, title, authors }) => {
+const Book = ({ book, onUpdateBook }) => {
 	const [currentShelf, setCurrentShelf] = useState("");
 	const onHandleChangeShelf = (shelf) => {
 		setCurrentShelf(shelf);
-		const res = BooksAPI.update(book, shelf);
+		onUpdateBook(book, shelf);
 	};
 	return (
 		<div className="book">
@@ -29,5 +29,9 @@ const Book = ({ book, url, title, authors }) => {
 			<div className="book-authors">{book.authors[0]}</div>
 		</div>
 	);
+};
+Book.propTypes = {
+	book: PropTypes.object.isRequired,
+	onUpdateBook: PropTypes.func.isRequired,
 };
 export default Book;

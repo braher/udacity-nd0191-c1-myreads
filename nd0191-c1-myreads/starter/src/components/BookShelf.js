@@ -2,7 +2,7 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
-const BookShelf = ({ title, books }) => {
+const BookShelf = ({ title, books, onUpdateBook }) => {
 	const [displayingBooks, setDisplayingBooks] = useState([]);
 	useEffect(() => {
 		let booksOfTheShelf = books;
@@ -27,7 +27,7 @@ const BookShelf = ({ title, books }) => {
 		}
 		setDisplayingBooks(booksOfTheShelf);
 		console.log("BookShelf");
-	}, []);
+	}, [books, title]);
 	return (
 		<div className="bookshelf">
 			<h2 className="bookshelf-title">{title}</h2>
@@ -40,6 +40,7 @@ const BookShelf = ({ title, books }) => {
 								url={book.imageLinks["thumbnail"]}
 								title={book.title}
 								authors={book.authors[0]}
+								onUpdateBook={onUpdateBook}
 							/>
 						</li>
 					))}
@@ -52,5 +53,6 @@ const BookShelf = ({ title, books }) => {
 BookShelf.propTypes = {
 	title: PropTypes.string.isRequired,
 	books: PropTypes.array.isRequired,
+	onUpdateBook: PropTypes.func.isRequired,
 };
 export default BookShelf;
