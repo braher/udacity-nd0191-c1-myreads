@@ -17,11 +17,8 @@ const SearchBooks = ({ onUpdateBook }) => {
 	}, [query]);
 	const handleSearch = async (query) => {
 		setQuery(query);
-		//const res = await searchBooks(query);
-		//const res = await BooksAPI.search(query, maxResults);
-		//const res = await BooksAPI.get("nggnmAEACAAJ");
-		//const res = await BooksAPI.getAll();
-		const res = await BooksAPI.getAll();
+		const res = await BooksAPI.search(query, maxResults);
+
 		const newRes = [...searchedBooks, res];
 		setSearchedBooks(newRes);
 	};
