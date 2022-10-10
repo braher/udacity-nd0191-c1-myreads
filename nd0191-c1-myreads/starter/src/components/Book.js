@@ -2,14 +2,14 @@ import { useState } from "react";
 import BookShelfChanger from "../components/BookShelfChanger";
 import PropTypes from "prop-types";
 
-const Book = ({ book, onUpdateBook }) => {
+const Book = ({ bookData, onUpdateBook }) => {
 	const [currentShelf, setCurrentShelf] = useState("");
 	const onHandleChangeShelf = (shelf) => {
 		setCurrentShelf(shelf);
-		onUpdateBook(book, shelf);
+		onUpdateBook(bookData, shelf);
 	};
 	return (
-		<li key={book.title}>
+		<li>
 			<div className="book">
 				<div className="book-top">
 					{/* {console.log("Book")} */}
@@ -18,16 +18,16 @@ const Book = ({ book, onUpdateBook }) => {
 						style={{
 							width: 128,
 							height: 193,
-							backgroundImage: `url(${book.imageLinks["thumbnail"]})`,
+							backgroundImage: `url(${bookData.imageLinks["thumbnail"]})`,
 						}}
 					></div>
 					<BookShelfChanger
-						shelf={book.shelf}
+						shelf={bookData.shelf}
 						onHandleChange={onHandleChangeShelf}
 					/>
 				</div>
-				<div className="book-title">{book.title}</div>
-				{book.authors.map((author) => (
+				<div className="book-title">{bookData.title}</div>
+				{bookData.authors.map((author) => (
 					<div className="book-authors">{author}</div>
 				))}
 				{/* <div className="book-authors">{book.authors[0]}</div> */}
@@ -36,7 +36,7 @@ const Book = ({ book, onUpdateBook }) => {
 	);
 };
 Book.propTypes = {
-	book: PropTypes.object.isRequired,
+	bookData: PropTypes.object.isRequired,
 	onUpdateBook: PropTypes.func.isRequired,
 };
 export default Book;

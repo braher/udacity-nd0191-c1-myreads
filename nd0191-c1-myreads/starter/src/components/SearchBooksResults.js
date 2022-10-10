@@ -1,13 +1,17 @@
 import Book from "./Book";
+import { useEffect } from "react";
 
 const SearchBooksResults = ({ searchedBooks, onUpdateBook }) => {
+	useEffect(() => {
+		// console.log("App");
+	}, [searchedBooks]);
 	return (
 		<div className="search-books-results">
 			<ol className="books-grid">
-				{searchedBooks &&
-					searchedBooks.map((book) => (
-						<Book book={book} onUpdateBook={onUpdateBook} />
-					))}
+				{console.log(searchedBooks)}
+				{searchedBooks.map((elem) => (
+					<Book key={elem.id} bookData={elem} onUpdateBook={onUpdateBook} />
+				))}
 			</ol>
 		</div>
 	);

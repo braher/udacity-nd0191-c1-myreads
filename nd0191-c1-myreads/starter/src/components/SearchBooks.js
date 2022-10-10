@@ -12,9 +12,7 @@ const SearchBooks = ({ onUpdateBook }) => {
 	// const searchBooks = async (query) => {
 	// 	return res;
 	// };
-	useEffect(() => {
-		// console.log("App");
-	}, [query]);
+	useEffect(() => {}, [query]);
 	const handleSearch = async (query) => {
 		setQuery(query);
 		const res = await BooksAPI.search(query, maxResults);
