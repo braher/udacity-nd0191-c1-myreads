@@ -26,7 +26,7 @@ const BookShelf = ({ title, books, onUpdateBook }) => {
 				console.log(title);
 		}
 		setDisplayingBooks(booksOfTheShelf);
-		console.log("BookShelf");
+		// console.log("BookShelf");
 	}, [books, title]);
 	return (
 		<div className="bookshelf">
@@ -34,15 +34,7 @@ const BookShelf = ({ title, books, onUpdateBook }) => {
 			<div className="bookshelf-books">
 				<ol className="books-grid">
 					{displayingBooks.map((book) => (
-						<li key={book.title}>
-							<Book
-								book={book}
-								url={book.imageLinks["thumbnail"]}
-								title={book.title}
-								authors={book.authors[0]}
-								onUpdateBook={onUpdateBook}
-							/>
-						</li>
+						<Book book={book} onUpdateBook={onUpdateBook} />
 					))}
 				</ol>
 			</div>

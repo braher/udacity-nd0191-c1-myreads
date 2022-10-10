@@ -1,20 +1,42 @@
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import * as BooksAPI from "../utils/BooksAPI";
+import SearchBooksResults from "./SearchBooksResults";
+import SearchBooksBar from "./SearchBooksBar";
 
-const SearchBooks = () => {
+const SearchBooks = ({ onUpdateBook }) => {
+	const [query, setQuery] = useState("");
+	const [searchedBooks, setSearchedBooks] = useState([]);
+	const maxResults = "10";
+
+	// const searchBooks = async (query) => {
+	// 	return res;
+	// };
+	useEffect(() => {
+		// console.log("App");
+	}, [query]);
+	const handleSearch = async (query) => {
+		setQuery(query);
+		//const res = await searchBooks(query);
+		//const res = await BooksAPI.search(query, maxResults);
+		//const res = await BooksAPI.get("nggnmAEACAAJ");
+		//const res = await BooksAPI.getAll();
+		const res = await BooksAPI.getAll();
+		const newRes = [...searchedBooks, res];
+		setSearchedBooks(newRes);
+	};
+
 	return (
 		<div className="search-books">
-			<div className="search-books-bar">
-				<Link to="/" className="close-search">
-					Close
-				</Link>
-				<div className="search-books-input-wrapper">
-					<input type="text" placeholder="Search by title, author, or ISBN" />
-				</div>
-			</div>
-			<div className="search-books-results">
-				<ol className="books-grid"></ol>
-			</div>
+			<SearchBooksBar handleSearch={handleSearch} />
+			<SearchBooksResults
+				searchedBooks={searchedBooks}
+				onUpdateBook={onUpdateBook}
+			/>
 		</div>
 	);
+};
+SearchBooks.propTypes = {
+	onUpdateBook: PropTypes.func.isRequired,
 };
 export default SearchBooks;

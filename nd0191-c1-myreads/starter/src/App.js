@@ -15,13 +15,19 @@ function App() {
 		const res = await BooksAPI.getAll();
 		setBooks(res);
 	};
+
+	const searchBooks = async (query) => {
+		const maxResults = 10;
+		const res = await BooksAPI.search(query, maxResults);
+		return res;
+	};
 	const updateBook = async (book, shelf) => {
 		const res = await BooksAPI.update(book, shelf);
 		getBooks();
 	};
 	useEffect(() => {
 		getBooks();
-		console.log("App");
+		// console.log("App");
 	}, [books]);
 
 	return (
@@ -57,7 +63,10 @@ function App() {
 					</div>
 				}
 			/>
-			<Route path="/search" element={<SearchBooks />} />
+			<Route
+				path="/search"
+				element={<SearchBooks onUpdateBook={updateBook} />}
+			/>
 		</Routes>
 	);
 }
