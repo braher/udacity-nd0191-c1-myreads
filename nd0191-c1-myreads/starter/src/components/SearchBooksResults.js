@@ -1,10 +1,11 @@
 import Book from "./Book";
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 
 const SearchBooksResults = ({ searchedBooks, onUpdateBook }) => {
-	useEffect(() => {
-		// console.log("App");
-	}, [searchedBooks]);
+	// useEffect(() => {
+	// 	// console.log("App");
+	// }, [searchedBooks]);
 	return (
 		<div className="search-books-results">
 			<ol className="books-grid">
@@ -15,5 +16,9 @@ const SearchBooksResults = ({ searchedBooks, onUpdateBook }) => {
 			</ol>
 		</div>
 	);
+};
+SearchBooksResults.propTypes = {
+	onUpdateBook: PropTypes.func.isRequired,
+	searchedBooks: PropTypes.array.isRequired,
 };
 export default SearchBooksResults;

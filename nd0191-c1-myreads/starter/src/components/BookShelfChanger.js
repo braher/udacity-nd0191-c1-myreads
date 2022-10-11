@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const BookShelfChanger = ({ shelf, onHandleChange }) => {
-	const shelves = ["Currently Reading", "Want to Read", "Read"];
 	const handleChange = (event) => {
 		onHandleChange(event.target.value);
 	};
@@ -14,7 +13,11 @@ const BookShelfChanger = ({ shelf, onHandleChange }) => {
 				<option value="currentlyReading">Currently Reading</option>
 				<option value="wantToRead">Want to Read</option>
 				<option value="read">Read</option>
-				<option value="none">None</option>
+				{shelf == undefined ? (
+					<option value="none">None</option>
+				) : (
+					<option value="none">None</option>
+				)}
 			</select>
 		</div>
 	);

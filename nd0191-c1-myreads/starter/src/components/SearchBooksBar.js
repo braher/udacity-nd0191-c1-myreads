@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const SearchBooksBar = ({ handleSearch }) => {
 	const onHandleSearch = (e) => {
@@ -18,5 +19,8 @@ const SearchBooksBar = ({ handleSearch }) => {
 			</div>
 		</div>
 	);
+};
+SearchBooksBar.propTypes = {
+	handleSearch: PropTypes.func.isRequired,
 };
 export default SearchBooksBar;

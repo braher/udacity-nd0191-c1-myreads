@@ -1,11 +1,10 @@
-import { useState } from "react";
 import BookShelfChanger from "../components/BookShelfChanger";
 import PropTypes from "prop-types";
 
 const Book = ({ bookData, onUpdateBook }) => {
-	const [currentShelf, setCurrentShelf] = useState("");
+	//const [currentShelf, setCurrentShelf] = useState("");
 	const onHandleChangeShelf = (shelf) => {
-		setCurrentShelf(shelf);
+		//setCurrentShelf(shelf);
 		onUpdateBook(bookData, shelf);
 	};
 	return (
@@ -18,7 +17,11 @@ const Book = ({ bookData, onUpdateBook }) => {
 						style={{
 							width: 128,
 							height: 193,
-							backgroundImage: `url(${bookData.imageLinks["thumbnail"]})`,
+							backgroundImage:
+								bookData.imageLinks !== undefined &&
+								bookData.imageLinks["thumbnail"] !== undefined
+									? `url(${bookData.imageLinks["thumbnail"]})`
+									: `url()`,
 						}}
 					></div>
 					<BookShelfChanger
@@ -27,9 +30,10 @@ const Book = ({ bookData, onUpdateBook }) => {
 					/>
 				</div>
 				<div className="book-title">{bookData.title}</div>
-				{bookData.authors.map((author) => (
-					<div className="book-authors">{author}</div>
-				))}
+				{bookData.authors !== undefined &&
+					bookData.authors.map((author) => (
+						<div className="book-authors">{author}</div>
+					))}
 				{/* <div className="book-authors">{book.authors[0]}</div> */}
 			</div>
 		</li>

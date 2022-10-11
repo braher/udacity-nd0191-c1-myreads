@@ -9,16 +9,11 @@ const SearchBooks = ({ onUpdateBook }) => {
 	const [searchedBooks, setSearchedBooks] = useState([]);
 	const maxResults = "10";
 
-	// const searchBooks = async (query) => {
-	// 	return res;
-	// };
-	useEffect(() => {}, [query]);
-	const handleSearch = async (query) => {
-		setQuery(query);
-		const res = await BooksAPI.search(query, maxResults);
-
-		const newRes = [...searchedBooks, res];
-		setSearchedBooks(newRes);
+	//useEffect(() => {}, [query]);
+	const handleSearch = async (q) => {
+		setQuery(q);
+		const res = query != "" ? await BooksAPI.search(q, maxResults) : [];
+		setSearchedBooks(res);
 	};
 
 	return (

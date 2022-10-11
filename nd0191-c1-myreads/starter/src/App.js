@@ -1,10 +1,9 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import Book from "./components/Book";
 import BookShelf from "./components/BookShelf";
 import SearchBooks from "./components/SearchBooks";
 import * as BooksAPI from "./utils/BooksAPI";
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
 	// const [showSearchPage, setShowSearchpage] = useState(false);
@@ -16,13 +15,8 @@ function App() {
 		setBooks(res);
 	};
 
-	const searchBooks = async (query) => {
-		const maxResults = 10;
-		const res = await BooksAPI.search(query, maxResults);
-		return res;
-	};
 	const updateBook = async (book, shelf) => {
-		const res = await BooksAPI.update(book, shelf);
+		await BooksAPI.update(book, shelf);
 		getBooks();
 	};
 	useEffect(() => {
