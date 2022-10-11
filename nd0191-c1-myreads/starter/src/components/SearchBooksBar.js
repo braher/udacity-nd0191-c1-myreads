@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const SearchBooksBar = ({ handleSearch }) => {
+	const [query, setQuery] = useState("");
+
 	const onHandleSearch = (e) => {
-		handleSearch(e.target.value.trim());
+		let text = e.target.value.trim();
+		setQuery(text);
+		handleSearch(query);
 	};
 	return (
 		<div className="search-books-bar">
@@ -15,6 +20,7 @@ const SearchBooksBar = ({ handleSearch }) => {
 					type="text"
 					placeholder="Search by title, author, or ISBN"
 					onChange={onHandleSearch}
+					value={query}
 				/>
 			</div>
 		</div>

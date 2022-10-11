@@ -5,14 +5,15 @@ import SearchBooksResults from "./SearchBooksResults";
 import SearchBooksBar from "./SearchBooksBar";
 
 const SearchBooks = () => {
-	const [query, setQuery] = useState("");
 	const [searchedBooks, setSearchedBooks] = useState([]);
 	const maxResults = "10";
 
-	const handleSearch = async (q) => {
-		setQuery(q);
-		const res = query !== "" ? await BooksAPI.search(q, maxResults) : [];
-		setSearchedBooks(res);
+	const handleSearch = (query) => {
+		const search = async () => {
+			const res = query !== "" ? await BooksAPI.search(query, maxResults) : [];
+			setSearchedBooks(res);
+		};
+		search();
 	};
 
 	return (
