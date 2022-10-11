@@ -1,12 +1,22 @@
 import BookShelfChanger from "../components/BookShelfChanger";
 import PropTypes from "prop-types";
+import * as BooksAPI from "../utils/BooksAPI";
+import { useNavigate } from "react-router-dom";
 
-const Book = ({ bookData, onUpdateBook }) => {
+const Book = ({ bookData }) => {
+	let navigate = useNavigate();
+
 	//const [currentShelf, setCurrentShelf] = useState("");
+	const updateBook = async (book, shelf) => {
+		await BooksAPI.update(book, shelf);
+		navigate("/");
+	};
+
 	const onHandleChangeShelf = (shelf) => {
 		//setCurrentShelf(shelf);
-		onUpdateBook(bookData, shelf);
+		updateBook(bookData, shelf);
 	};
+
 	return (
 		<li>
 			<div className="book">
@@ -21,7 +31,7 @@ const Book = ({ bookData, onUpdateBook }) => {
 								bookData.imageLinks !== undefined &&
 								bookData.imageLinks["thumbnail"] !== undefined
 									? `url(${bookData.imageLinks["thumbnail"]})`
-									: `url()`,
+									: `url("")`,
 						}}
 					></div>
 					<BookShelfChanger
@@ -41,6 +51,6 @@ const Book = ({ bookData, onUpdateBook }) => {
 };
 Book.propTypes = {
 	bookData: PropTypes.object.isRequired,
-	onUpdateBook: PropTypes.func.isRequired,
+	//onUpdateBook: PropTypes.func.isRequired,
 };
 export default Book;
