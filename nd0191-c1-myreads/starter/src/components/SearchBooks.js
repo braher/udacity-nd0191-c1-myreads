@@ -11,7 +11,11 @@ const SearchBooks = () => {
 	const handleSearch = (query) => {
 		const search = async () => {
 			const res = query !== "" ? await BooksAPI.search(query, maxResults) : [];
-			setSearchedBooks(res);
+			if (res["error"] !== undefined) {
+				setSearchedBooks([]);
+			} else {
+				setSearchedBooks(res);
+			}
 		};
 		search();
 	};

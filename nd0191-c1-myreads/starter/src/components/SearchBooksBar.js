@@ -6,9 +6,9 @@ const SearchBooksBar = ({ handleSearch }) => {
 	const [query, setQuery] = useState("");
 
 	const onHandleSearch = (e) => {
-		let text = e.target.value.trim();
+		let text = e.trim();
 		setQuery(text);
-		handleSearch(query);
+		handleSearch(text);
 	};
 	return (
 		<div className="search-books-bar">
@@ -19,7 +19,7 @@ const SearchBooksBar = ({ handleSearch }) => {
 				<input
 					type="text"
 					placeholder="Search by title, author, or ISBN"
-					onChange={onHandleSearch}
+					onChange={(event) => onHandleSearch(event.target.value)}
 					value={query}
 				/>
 			</div>
