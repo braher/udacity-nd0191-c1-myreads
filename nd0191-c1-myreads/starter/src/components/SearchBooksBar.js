@@ -6,9 +6,9 @@ const SearchBooksBar = ({ handleSearch }) => {
 	const [query, setQuery] = useState("");
 
 	const onHandleSearch = (e) => {
-		let text = e.trim();
+		let text = e;
 		setQuery(text);
-		handleSearch(text);
+		handleSearch(text.trim());
 	};
 	return (
 		<div className="search-books-bar">
