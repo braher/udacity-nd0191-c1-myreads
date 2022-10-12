@@ -39,7 +39,9 @@ const Book = ({ bookData }) => {
 			<div className="book-title">{bookData.title}</div>
 			{bookData.authors !== undefined &&
 				bookData.authors.map((author) => (
-					<div className="book-authors">{author}</div>
+					<div key={author} className="book-authors">
+						{author}
+					</div>
 				))}
 		</div>
 	);
