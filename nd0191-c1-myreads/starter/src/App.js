@@ -33,6 +33,15 @@ function App() {
 		search();
 	};
 
+	// Filter out the book and append it to the end of the list
+	// so it appears at the end of whatever shelf it was added to.
+	const updateBookShelf = (book, shelf) => {
+		book.shelf = shelf;
+		BooksAPI.update(book, shelf).then(() => {
+			setBooks([...books.filter((b) => b.id !== book.id), book]);
+		});
+	};
+
 	useEffect(() => {
 		const getBooks = async () => {
 			const res = await BooksAPI.getAll();
@@ -45,15 +54,23 @@ function App() {
 		return () => {
 			unmounted = true;
 		};
-	});
+	}, []);
 
 	return (
 		<Routes>
-			<Route exact path="/" element={<ListBooks books={books} />} />
+			<Route
+				exact
+				path="/"
+				element={<ListBooks books={books} updateBookShelf={updateBookShelf} />}
+			/>
 			<Route
 				path="/search"
 				element={
-					<SearchBooks searchBooks={searchBooks} searchResult={searchedBooks} />
+					<SearchBooks
+						searchBooks={searchBooks}
+						searchResult={searchedBooks}
+						updateBookShelf={updateBookShelf}
+					/>
 				}
 			/>
 		</Routes>

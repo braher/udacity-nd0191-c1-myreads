@@ -1,18 +1,13 @@
 import BookShelfChanger from "../components/BookShelfChanger";
 import PropTypes from "prop-types";
-import * as BooksAPI from "../utils/BooksAPI";
 import { useState } from "react";
 
-const Book = ({ bookData }) => {
+const Book = ({ bookData, updateBookShelf }) => {
 	const [bookShelf, setBookShelf] = useState(bookData.shelf);
-
-	const updateBook = async (book, shelf) => {
-		await BooksAPI.update(book, shelf);
-	};
 
 	const onHandleChangeShelf = (shelf) => {
 		setBookShelf(shelf);
-		updateBook(bookData, shelf);
+		updateBookShelf(bookData, shelf);
 	};
 
 	return (
@@ -48,5 +43,6 @@ const Book = ({ bookData }) => {
 };
 Book.propTypes = {
 	bookData: PropTypes.object.isRequired,
+	updateBookShelf: PropTypes.func.isRequired,
 };
 export default Book;

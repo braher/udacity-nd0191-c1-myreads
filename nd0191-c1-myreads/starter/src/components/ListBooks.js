@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import BookShelf from "../components/BookShelf";
 import PropTypes from "prop-types";
 
-const ListBooks = ({ books }) => {
+const ListBooks = ({ books, updateBookShelf }) => {
 	const shelves = ["Currently Reading", "Want to Read", "Read"];
 	return (
 		<div className="list-books">
@@ -12,7 +12,12 @@ const ListBooks = ({ books }) => {
 			<div className="list-books-content">
 				{books.length > 0 &&
 					shelves.map((shelf) => (
-						<BookShelf key={shelf} title={shelf} books={books} />
+						<BookShelf
+							key={shelf}
+							title={shelf}
+							books={books}
+							updateBookShelf={updateBookShelf}
+						/>
 					))}
 			</div>
 			<div className="open-search">
@@ -23,5 +28,6 @@ const ListBooks = ({ books }) => {
 };
 ListBooks.propTypes = {
 	books: PropTypes.array.isRequired,
+	updateBookShelf: PropTypes.func.isRequired,
 };
 export default ListBooks;

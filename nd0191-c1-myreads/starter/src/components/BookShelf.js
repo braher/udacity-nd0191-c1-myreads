@@ -2,7 +2,7 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
-const BookShelf = ({ title, books }) => {
+const BookShelf = ({ title, books, updateBookShelf }) => {
 	const [displayingBooks, setDisplayingBooks] = useState([]);
 	useEffect(() => {
 		let booksOfTheShelf = books;
@@ -34,7 +34,11 @@ const BookShelf = ({ title, books }) => {
 				<ol className="books-grid">
 					{displayingBooks.map((book) => (
 						<li key={book.id}>
-							<Book key={book.title} bookData={book} />
+							<Book
+								key={book.title}
+								bookData={book}
+								updateBookShelf={updateBookShelf}
+							/>
 						</li>
 					))}
 				</ol>
@@ -46,5 +50,6 @@ const BookShelf = ({ title, books }) => {
 BookShelf.propTypes = {
 	title: PropTypes.string.isRequired,
 	books: PropTypes.array.isRequired,
+	updateBookShelf: PropTypes.func.isRequired,
 };
 export default BookShelf;
