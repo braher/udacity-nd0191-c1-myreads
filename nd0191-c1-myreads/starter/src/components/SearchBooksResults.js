@@ -1,11 +1,7 @@
 import Book from "./Book";
-import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 const SearchBooksResults = ({ searchedBooks }) => {
-	// useEffect(() => {
-	// 	// console.log("App");
-	// }, [searchedBooks]);
 	return (
 		<div className="search-books-results">
 			<ol className="books-grid">
