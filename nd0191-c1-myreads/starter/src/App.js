@@ -19,6 +19,7 @@ function App() {
 				setSearchedBooks([]);
 			} else {
 				searchResult.forEach((element) => {
+					element.shelf = "none";
 					for (let i = 0; i < books.length; i++) {
 						if (element.id === books[i].id) {
 							element.shelf = books[i].shelf;
