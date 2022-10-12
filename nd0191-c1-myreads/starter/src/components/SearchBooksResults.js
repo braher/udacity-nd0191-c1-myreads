@@ -5,9 +5,10 @@ const SearchBooksResults = ({ searchedBooks }) => {
 	return (
 		<div className="search-books-results">
 			<ol className="books-grid">
-				{console.log(searchedBooks)}
 				{searchedBooks.map((elem) => (
-					<Book key={elem.id} bookData={elem} />
+					<li key={elem.id}>
+						<Book key={elem.title} bookData={elem} />
+					</li>
 				))}
 			</ol>
 		</div>

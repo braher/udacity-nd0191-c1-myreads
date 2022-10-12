@@ -26,7 +26,6 @@ const BookShelf = ({ title, books }) => {
 				console.log(title);
 		}
 		setDisplayingBooks(booksOfTheShelf);
-		// console.log("BookShelf");
 	}, [books, title]);
 	return (
 		<div className="bookshelf">
@@ -34,7 +33,9 @@ const BookShelf = ({ title, books }) => {
 			<div className="bookshelf-books">
 				<ol className="books-grid">
 					{displayingBooks.map((book) => (
-						<Book key={book.id} bookData={book} />
+						<li key={book.id}>
+							<Book key={book.title} bookData={book} />
+						</li>
 					))}
 				</ol>
 			</div>
@@ -45,6 +46,5 @@ const BookShelf = ({ title, books }) => {
 BookShelf.propTypes = {
 	title: PropTypes.string.isRequired,
 	books: PropTypes.array.isRequired,
-	//onUpdateBook: PropTypes.func.isRequired,
 };
 export default BookShelf;

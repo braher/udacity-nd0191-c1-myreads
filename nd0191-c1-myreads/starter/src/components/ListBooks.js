@@ -1,26 +1,9 @@
-import * as BooksAPI from "../utils/BooksAPI";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BookShelf from "../components/BookShelf";
+import PropTypes from "prop-types";
 
-const ListBooks = () => {
-	const [books, setBooks] = useState([]);
+const ListBooks = ({ books }) => {
 	const shelves = ["Currently Reading", "Want to Read", "Read"];
-
-	const getBooks = async () => {
-		const res = await BooksAPI.getAll();
-		setBooks(res);
-	};
-
-	useEffect(() => {
-		let unmounted = false;
-		if (!unmounted) {
-			getBooks();
-		}
-		return () => {
-			unmounted = true;
-		};
-	});
 	return (
 		<div className="list-books">
 			<div className="list-books-title">
@@ -37,5 +20,8 @@ const ListBooks = () => {
 			</div>
 		</div>
 	);
+};
+ListBooks.propTypes = {
+	books: PropTypes.array.isRequired,
 };
 export default ListBooks;

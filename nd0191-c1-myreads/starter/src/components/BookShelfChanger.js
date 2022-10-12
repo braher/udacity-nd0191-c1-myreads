@@ -5,7 +5,7 @@ const BookShelfChanger = ({ shelf, onHandleChange }) => {
 		onHandleChange(event.target.value);
 	};
 	return (
-		<div className="book-shelf-changer">
+		<div key={shelf} className="book-shelf-changer">
 			<select
 				value={shelf !== undefined ? shelf : "none"}
 				onChange={handleChange}
