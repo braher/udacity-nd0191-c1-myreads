@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useDebounce from "../utils/useDebounce";
 
 const SearchBooksBar = ({ handleSearch }) => {
 	const [query, setQuery] = useState("");
+	const debouncedValue = useDebounce(query, 500);
 
 	const onHandleSearch = (e) => {
 		let text = e;
 		setQuery(text);
-		handleSearch(text.trim());
 	};
+
+	useEffect(() => {
+		console.log("debounced");
+		handleSearch(query.trim(debouncedValue));
+	}, [debouncedValue]);
+
 	return (
 		<div className="search-books-bar">
 			<Link to="/" className="close-search">

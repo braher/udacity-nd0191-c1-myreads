@@ -21,7 +21,7 @@ const BookDetail = () => {
 			});
 		};
 		getBook();
-	}, []);
+	}, [bookId]);
 
 	return (
 		<div>
