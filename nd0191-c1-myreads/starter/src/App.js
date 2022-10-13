@@ -4,6 +4,7 @@ import SearchBooks from "./components/SearchBooks";
 import { Route, Routes } from "react-router-dom";
 import * as BooksAPI from "./utils/BooksAPI";
 import { useState, useEffect } from "react";
+import BookDetail from "./components/BookDetail";
 
 function App() {
 	const [books, setBooks] = useState([]);
@@ -73,6 +74,7 @@ function App() {
 					/>
 				}
 			/>
+			<Route path="/books/:bookId" element={<BookDetail />} />
 		</Routes>
 	);
 }

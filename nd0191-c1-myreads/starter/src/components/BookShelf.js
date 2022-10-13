@@ -1,6 +1,7 @@
 import Book from "./Book";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const BookShelf = ({ title, books, updateBookShelf }) => {
 	const [displayingBooks, setDisplayingBooks] = useState([]);
@@ -39,6 +40,7 @@ const BookShelf = ({ title, books, updateBookShelf }) => {
 								bookData={book}
 								updateBookShelf={updateBookShelf}
 							/>
+							<Link to={`/books/${book.id}`}>More info (+)</Link>
 						</li>
 					))}
 				</ol>
