@@ -6,12 +6,6 @@ import { Link } from "react-router-dom";
 const BookDetail = () => {
 	const { bookId } = useParams();
 	const [thisBook, setThisBook] = useState(null);
-	// const getBook = async () => {
-	// 	await BooksAPI.get(bookId).then((data) => {
-	// 		setThisBook(data.book);
-	// 	});
-	// };
-	// getBook();
 
 	useEffect(() => {
 		console.log("using effect");
@@ -21,15 +15,48 @@ const BookDetail = () => {
 			});
 		};
 		getBook();
-	}, [bookId]);
+	}, []);
 
 	return (
-		<div>
+		<div className="list-books-content">
 			<Link to="/" className="close-search">
 				Close
 			</Link>
-			<h1>{thisBook.title}</h1>
-			<p>{thisBook.description}</p>
+
+			<div className="bookshelf-books">
+				<div className="center">
+					<div
+						className="book-cover"
+						style={{
+							width: 128,
+							height: 193,
+							backgroundImage:
+								thisBook?.imageLinks !== undefined &&
+								thisBook?.imageLinks["thumbnail"] !== undefined
+									? `url(${thisBook.imageLinks["thumbnail"]})`
+									: `url("")`,
+						}}
+					></div>
+				</div>
+				<div className="book-title">
+					Title: <span className="book-authors">{thisBook?.title}</span>
+				</div>
+				<div className="book-title">
+					Subtitle:
+					<span className="book-authors">{thisBook?.subtitle}</span>
+				</div>
+				<div className="book-title">Authors:</div>
+
+				{thisBook?.authors.map((author) => (
+					<div key={author} className="book-authors">
+						{author}
+					</div>
+				))}
+				<p className="book-title">
+					Description:{" "}
+					<span className="book-authors">{thisBook?.description}</span>
+				</p>
+			</div>
 		</div>
 	);
 };

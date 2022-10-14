@@ -175,3 +175,9 @@ body,
   text-align: center;
   font-size: 0.8em;
 }
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

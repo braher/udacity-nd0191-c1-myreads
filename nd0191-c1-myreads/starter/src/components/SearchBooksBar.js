@@ -13,7 +13,6 @@ const SearchBooksBar = ({ handleSearch }) => {
 	};
 
 	useEffect(() => {
-		console.log("debounced");
 		handleSearch(query.trim(debouncedValue));
 	}, [debouncedValue]);
 
